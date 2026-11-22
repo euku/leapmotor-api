@@ -20,6 +20,13 @@ DEFAULT_DEVICE_TYPE = "1"
 DEFAULT_P12_ENC_ALG = "1"
 DEFAULT_POLICY_ID = "20260204"
 
+# The Leapmotor app caps the login password input at 16 characters, so an account
+# password is never longer than this and the gateway rejects a longer string with
+# the generic "Incorrect account or password". A password copied from elsewhere
+# (e.g. a password manager) can be longer than what the app actually sent when the
+# account was created; the client truncates to match the app. See client.__init__.
+MAX_PASSWORD_LENGTH = 16
+
 # --- v2 signature (x-api-signature-version: 2.0) ---
 # The real app uses deviceType="android" (not "1") for v2-signed requests, plus
 # the extra headers below. These are only applied by build_signed_headers_v2 so
